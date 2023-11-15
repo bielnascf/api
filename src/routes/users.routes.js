@@ -1,20 +1,11 @@
 const { Router } = require("express");
 
-const usersRouter = Router();
-
-// function myMiddleware(request, response, next) {
-
-//     if(!request.body.isAdmin) {
-//         return response.status(401).json({ message: "user unauthorized" });
-//     }
-
-//     next()
-// }
+const usersRoutes = Router();
 
 const UsersController = require('../controllers/usersController')
 const userController = new UsersController()
 
-usersRouter.post('/', userController.create) // ---> Aqui entraria o middleware de forma específica.
-// para usar um middleware geral (Para todas as rotas) ---> userRouter.use(myMiddleware)
+usersRoutes.post('/', userController.create)
+usersRoutes.put('/:id', userController.update)
 
-module.exports = usersRouter;
+module.exports = usersRoutes;
